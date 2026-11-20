@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAID EXPRESS - Livraison Settat</title>
+  <style>
+    :root {
+      --blue: #0b3b75;
+      --orange: #f57c00;
+      --bg: #f4f7fb;
+      --card: #ffffff;
+      --text: #1c2430;
+    }
+    * { box-sizing: border-box; font-family: Tahoma, Arial, sans-serif; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+    }
+    header {
+      background: linear-gradient(135deg, var(--blue), #14549c);
+      color: #fff;
+      padding: 20px 16px;
+      text-align: center;
+      border-bottom: 4px solid var(--orange);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: 1px;
+    }
+    header h1 span { color: var(--orange); }
+    header p {
+      margin: 6px 0 0;
+      font-size: 13px;
+      opacity: 0.92;
+    }
+    .container {
+      max-width: 480px;
+      margin: 16px auto;
+      padding: 0 14px 30px;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-weight: bold;
+      color: var(--blue);
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .service-btn {
+      border: 2px solid #dce4ef;
+      background: #fff;
+      border-radius: 10px;
+      padding: 10px 6px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--blue);
+      transition: 0.2s;
+    }
+    .service-btn.active {
+      border-color: var(--orange);
+      background: #fff5eb;
+      color: var(--orange);
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      margin: 10px 0 5px;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1.5px solid #d5dfec;
+      border-radius: 10px;
+      font-size: 14px;
+      outline: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+    }
+    .submit-btn {
+      width: 100%;
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+    .submit-btn:active { opacity: 0.9; }
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>SAID <span>EXPRESS</span></h1>
+  <p>LIVRAISON SETTAT & RÉGIONS — خدمة التوصيل السريع بسطات</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <div class="section-title">1. اختر نوع الخدمة (Type de service)</div>
+    <div class="services">
+      <div class="service-btn active" onclick="selectService(this, 'Express (توصيل سريع)')">⚡ Express</div>
+      <div class="service-btn" onclick="selectService(this, 'Colis (طرد / سلعة)')">📦 Colis</div>
+      <div class="service-btn" onclick="selectService(this, 'Moto / Camion')">🛵 Moto/Camion</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="section-title">2. معلومات الطلب (Nouvelle Commande)</div>
+
+    <label>الاسم الكامل للزبون</label>
+    <input type="text" id="clientName" placeholder="مثال: محمد العلوى" />
+
+    <label>رقم الهاتف</label>
+    <input type="tel" id="clientPhone" placeholder="مثال: 06XXXXXXXX" />
+
+    <label>منطقة الانطلاق (سطات والنواحي)</label>
+    <select id="pickupZone">
+      <option value="وسط مدينة سطات (Centre-ville)">وسط مدينة سطات (Centre-ville)</option>
+      <option value="حي السلام / مفتاح الخير">حي السلام / مفتاح الخير</option>
+      <option value="حي سيدي عبد الكريم / مجمع الخير">حي سيدي عبد الكريم / مجمع الخير</option>
+      <option value="الحي الصناعي / طريق الدار البيضاء">الحي الصناعي / طريق الدار البيضاء</option>
+      <option value="النواحي (برشيد / البروج / بن أحمد...)">النواحي (برشيد / البروج / بن أحمد...)</option>
+    </select>
+
+    <label>عنوان الاستلام بالتدقيق</label>
+    <input type="text" id="pickupAddress" placeholder="الحي، الشارع، أو نقطة معروفة" />
+
+    <label>عنوان التوصيل (Destination)</label>
+    <input type="text" id="dropoffAddress" placeholder="فين غادي توصل الأمانة؟" />
+
+    <label>ملاحظات إضافية (اختياري)</label>
+    <textarea id="notes" rows="2" placeholder="مثال: الدفع عند الاستلام، أو وقت محدد..."></textarea>
+
+    <button class="submit-btn" onclick="sendOrder()">اطلب الآن / Commander</button>
+  </div>
+
+  <div class="footer-note">
+    SAID EXPRESS — Projet par saidnainia20-spec • Settat
+  </div>
+</div>
+
+<script>
+  let selectedService = "Express (توصيل سريع)";
+
+  // ضع رقم واتساب الخاص بك هنا بصيغة دولية بدون + (مثال: 212600000000)
+  const DRIVER_WHATSAPP = "212603681664";
+
+  function selectService(el, serviceName) {
+    document.querySelectorAll('.service-btn').forEach(btn => btn.classList.remove('active'));
+    el.classList.add('active');
+    selectedService = serviceName;
+  }
+
+  function sendOrder() {
+    const name = document.getElementById("clientName").value.trim();
+    const phone = document.getElementById("clientPhone").value.trim();
+    const zone = document.getElementById("pickupZone").value;
+    const pickup = document.getElementById("pickupAddress").value.trim();
+    const dropoff = document.getElementById("dropoffAddress").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+
+    if (!name || !phone || !pickup || !dropoff) {
+      alert("عافاك عمر الاسم، رقم الهاتف، عنوان الانطلاق وعنوان التوصيل.");
+      return;
+    }
+
+    const msg =
+      `📦 *طلب توصيل جديد - SAID EXPRESS SETTAT*%0A` +
+      `🔹 *الخدمة:* ${selectedService}%0A` +
+      `👤 *الاسم:* ${name}%0A` +
+      `📞 *الهاتف:* ${phone}%0A` +
+      `📍 *المنطقة:* ${zone}%0A` +
+      `🏠 *الانطلاق:* ${pickup}%0A` +
+      `🏁 *الوصول:* ${dropoff}%0A` +
+      (notes ? `📝 *ملاحظات:* ${notes}` : ``);
+
+    window.open(`https://wa.me/${DRIVER_WHATSAPP}?text=${msg}`, "_blank");
+  }
+</script>
+
+</body>
+</html>
