@@ -4,157 +4,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#171717">
 <title>SAID EXPRESS - Livraison Settat</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f6f8;color:#222}
-header{background:#111;color:white;text-align:center;padding:25px 12px}
-header h1{color:#f5c400;margin:0;font-size:30px}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f4f4;color:#222}
+header{background:#171717;color:white;text-align:center;padding:22px 12px}
+header h1{color:#ffca28;margin:0;font-size:29px}
 header p{margin:8px 0 0}
-nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:14px}
-button{border:0;border-radius:8px;padding:11px 16px;background:#f5c400;color:#111;font-weight:bold;cursor:pointer}
-main{max-width:750px;margin:auto;padding:12px}
-section,.product,.cart{background:white;padding:16px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #00000010}
-h2{color:#222;font-size:21px}
-input,select,textarea{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px;font-size:16px}
-.product{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.product p{margin:5px 0;color:#666}
-.price{font-weight:bold;color:#16834a}
-.cart-item{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #eee}
-.whatsapp{width:100%;background:#168c48;color:white;font-size:17px;margin-top:10px}
-footer{text-align:center;padding:20px;background:#111;color:white;margin-top:25px}
-.hidden{display:none}
+nav{display:flex;gap:7px;overflow-x:auto;background:#292929;padding:10px}
+nav button{white-space:nowrap;background:#444;color:white;border:0;border-radius:8px;padding:11px}
+nav button.active{background:#ffca28;color:#171717}
+main{max-width:850px;margin:auto;padding:14px}
+section{display:none}
+section.active{display:block}
+.card{background:white;border-radius:12px;padding:15px;margin:12px 0;box-shadow:0 2px 7px #00000012}
+h2{color:#222;margin-top:5px}
+h3{margin:8px 0}
+button,.btn{cursor:pointer;border:0;border-radius:8px;padding:11px 14px;background:#ffca28;color:#171717;font-weight:bold}
+input,textarea,select{width:100%;padding:12px;margin:7px 0;border:1px solid #ccc;border-radius:8px;font-size:16px}
+textarea{min-height:80px}
+.product{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #eee;padding:12px 0}
+.product button{min-width:75px}
+.price{font-weight:bold;color:#168344;white-space:nowrap}
+.small{font-size:13px;color:#666}
+.whatsapp{display:block;text-align:center;background:#168b48;color:white;text-decoration:none;padding:14px;border-radius:9px;font-weight:bold;margin-top:12px}
+footer{text-align:center;background:#171717;color:white;padding:20px;margin-top:25px}
+.tag{display:inline-block;background:#fff0bd;padding:5px 9px;border-radius:6px;font-size:12px}
 </style>
 </head>
 <body>
 
 <header>
 <h1>SAID EXPRESS</h1>
-<p>خدمات التوصيل والشراء بمدينة سطات</p>
-<p>خدمتك حتى لباب دارك 🚴</p>
+<p>خدمات التوصيل والشراء داخل مدينة سطات</p>
+<p>سريع • موثوق • قريب منك</p>
 </header>
 
 <nav>
-<button onclick="showSection('delivery')">طلب التوصيل</button>
-<button onclick="showSection('shops')">المتاجر والوجبات</button>
-<button onclick="showSection('cart')">سلة المشتريات 🛒</button>
+<button class="active" onclick="showTab('home',this)">الرئيسية</button>
+<button onclick="showTab('restaurant',this)">CRISPY BOWL</button>
+<button onclick="showTab('stores',this)">المتاجر</button>
+<button onclick="showTab('vegetables',this)">الخضر والفواكه</button>
+<button onclick="showTab('pharmacy',this)">الصيدلية</button>
+<button onclick="showTab('order',this)">طلب التوصيل</button>
 </nav>
 
 <main>
 
-<section id="delivery">
-<h2>🚴 طلب خدمة التوصيل</h2>
-<form onsubmit="sendDelivery(event)">
-<input id="dname" placeholder="الاسم الكامل" required>
-<input id="dphone" placeholder="رقم الهاتف" required>
-<select id="dtype">
-<option>توصيل طلبية</option>
-<option>توصيل وثائق أو طرد</option>
-<option>شراء من متجر</option>
-<option>توصيل وجبة</option>
-<option>خدمة أخرى</option>
-</select>
-<input id="dfrom" placeholder="عنوان الانطلاق" required>
-<input id="dto" placeholder="عنوان الوصول" required>
-<textarea id="dnotes" placeholder="ملاحظات إضافية"></textarea>
-<button class="whatsapp" type="submit">إرسال طلب التوصيل عبر واتساب</button>
-</form>
-<p>ثمن التوصيل يتحدد حسب العنوان والمسافة.</p>
+<section id="home" class="active">
+<div class="card">
+<h2>مرحبا بكم في SAID EXPRESS</h2>
+<p>خدمة التوصيل والشراء داخل سطات. اختار الخدمة اللي محتاج، وصيفط الطلب ديالك مباشرة عبر واتساب.</p>
+<span class="tag">Livraison Settat</span>
+</div>
+<div class="card">
+<h3>خدماتنا</h3>
+<p>🍔 توصيل وجبات CRISPY BOWL</p>
+<p>🛒 الشراء من BIM وCarrefour</p>
+<p>🥕 الخضر والفواكه</p>
+<p>💊 طلبات الصيدلية</p>
+<p>📦 توصيل الأغراض والطلبات</p>
+<button onclick="showTab('order',document.querySelectorAll('nav button')[5])">اطلب التوصيل</button>
+</div>
+<div class="card">
+<h3>تواصل معنا</h3>
+<a class="whatsapp" href="https://wa.me/212603681664">تواصل عبر واتساب</a>
+</div>
 </section>
 
-<section id="shops" class="hidden">
-<h2>🍔 المطاعم والوجبات</h2>
-<div id="products"></div>
+<section id="restaurant">
+<div class="card">
+<h2>🍔 CRISPY BOWL عند سعيد</h2>
+<p>وجبات لذيذة وأثمنة واضحة. الموقع: سطات، قرب قصبة الإسماعيلية.</p>
+<div id="menu"></div>
+</div>
+<div class="card">
+<h3>🛒 سلة المشتريات</h3>
+<div id="cart">السلة فارغة</div>
+<p id="total">المجموع: 0 درهم</p>
+<input id="customerName" placeholder="الاسم ديالك">
+<input id="customerPhone" placeholder="رقم الهاتف">
+<input id="customerAddress" placeholder="العنوان ديال التوصيل">
+<textarea id="customerNote" placeholder="ملاحظات إضافية (اختياري)"></textarea>
+<button onclick="sendFoodOrder()">إرسال الطلب عبر واتساب</button>
+</div>
 </section>
 
-<section id="cart" class="hidden">
-<h2>🛒 سلة المشتريات</h2>
-<div id="cartItems">السلة فارغة حاليا</div>
-<h3>المجموع: <span id="total">0</span> درهم</h3>
+<section id="stores">
+<div class="card">
+<h2>🛒 التسوق من المتاجر</h2>
+<p>اختار المتجر وكتب لينا المنتجات والكميات اللي بغيتي. الثمن والتوفر كيتأكدو قبل الشراء.</p>
+<h3>بيم BIM</h3>
+<textarea id="bimList" placeholder="كتب منتجات BIM والكميات المطلوبة"></textarea>
+<button onclick="sendList('BIM','bimList')">طلب من BIM عبر واتساب</button>
 <hr>
-<input id="buyerName" placeholder="الاسم الكامل">
-<input id="buyerPhone" placeholder="رقم الهاتف">
-<input id="buyerAddress" placeholder="عنوان التوصيل">
-<textarea id="buyerNotes" placeholder="ملاحظات"></textarea>
-<button class="whatsapp" onclick="sendCart()">تأكيد الطلب عبر واتساب</button>
+<h3>كارفور Carrefour</h3>
+<textarea id="carrefourList" placeholder="كتب منتجات Carrefour والكميات المطلوبة"></textarea>
+<button onclick="sendList('Carrefour','carrefourList')">طلب من Carrefour عبر واتساب</button>
+<p class="small">الأثمنة كتتأكد حسب المتجر والتوفر وقت الشراء. ما كايناش أثمنة تجريبية.</p>
+</div>
 </section>
 
-<section>
-<h2>📞 التواصل معنا</h2>
-<p>واتساب: 0603681664</p>
-<p>SAID EXPRESS - Livraison Settat</p>
+<section id="vegetables">
+<div class="card">
+<h2>🥕 الخضر والفواكه</h2>
+<p>كتب اللائحة ديالك والكميات، وغادي نتواصلو معاك لتأكيد الثمن.</p>
+<textarea id="vegetableList" placeholder="مثال: 2 كيلو بطاطس، 1 كيلو طماطم، كيلو موز..."></textarea>
+<button onclick="sendList('الخضر والفواكه','vegetableList')">إرسال الطلب عبر واتساب</button>
+</div>
+</section>
+
+<section id="pharmacy">
+<div class="card">
+<h2>💊 خدمة الصيدلية</h2>
+<p>كتب اسم المنتج أو الدواء المطلوب، ويمكنك إرسال صورة الوصفة مباشرة عبر واتساب.</p>
+<textarea id="pharmacyList" placeholder="اسم المنتج أو الدواء المطلوب"></textarea>
+<button onclick="sendList('الصيدلية','pharmacyList')">إرسال الطلب عبر واتساب</button>
+<a class="whatsapp" href="https://wa.me/212603681664?text=السلام%20عليكم،%20بغيت%20نرسل%20صورة%20الوصفة">إرسال صورة الوصفة عبر واتساب</a>
+<p class="small">الأدوية حسب توفرها وشروط صرفها لدى الصيدلية.</p>
+</div>
+</section>
+
+<section id="order">
+<div class="card">
+<h2>🛵 طلب خدمة التوصيل</h2>
+<input id="deliveryName" placeholder="الاسم الكامل">
+<input id="deliveryPhone" placeholder="رقم الهاتف">
+<input id="deliveryFrom" placeholder="منين ناخدو الطلب؟">
+<input id="deliveryTo" placeholder="فين نوصلوه؟">
+<textarea id="deliveryDetails" placeholder="شنو بغيتي نوصلو ليك؟"></textarea>
+<button onclick="sendDelivery()">إرسال طلب التوصيل عبر واتساب</button>
+</div>
 </section>
 
 </main>
 
-<footer>© 2026 SAID EXPRESS - جميع الحقوق محفوظة</footer>
+<footer>
+<strong>SAID EXPRESS</strong>
+<p>خدمات التوصيل - سطات</p>
+<p>للتواصل: 0603681664</p>
+</footer>
 
 <script>
 const phone="212603681664";
 
+function showTab(id,btn){
+document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll("nav button").forEach(b=>b.classList.remove("active"));
+if(btn)btn.classList.add("active");
+}
+
 const products=[
-{name:"طاكوس دجاج",price:25,category:"وجبات"},
-{name:"ساندويتش كريسبي",price:15,category:"وجبات"},
-{name:"بطاطس مقلية",price:12,category:"وجبات"},
-{name:"بيتزا صغيرة",price:20,category:"وجبات"},
-{name:"ماء معدني",price:5,category:"بقالة"},
-{name:"عصير",price:8,category:"بقالة"},
-{name:"خبز",price:2,category:"بقالة"}
+["Wrap Rourel",20],["Wrap Buffalo",20],["Wrap Volcano",20],
+["Tacos Crispy",22],["Tacos Crispy مع فريت",25],
+["Tacos Chicken",20],["Tacos Chicken مع فريت",25],
+["Tacos viande hachée",25],["Tacos viande hachée مع فريت",28],
+["Tacos Mix",25],["Tacos Mix مع فريت",28],
+["Sandwich Crispy",15],["Sandwich Chicken",10],
+["Sandwich Saucisse",10],["Sandwich viande hachée",15],
+["Crispy Bowl بطاطس",22],["Crispy Bowl أرز",22],
+["Burger Chicken",20],["Burger Chicken مع فريت",23],
+["Burger Crispy",22],["Burger Crispy مع فريت",25],
+["إضافة فريت",5],["إضافة جبن",2]
 ];
 
 let cart=[];
 
-function showSection(id){
-["delivery","shops","cart"].forEach(x=>{
-document.getElementById(x).classList.add("hidden");
-});
-document.getElementById(id).classList.remove("hidden");
-if(id==="cart")renderCart();
-}
-
-function renderProducts(){
-const box=document.getElementById("products");
-box.innerHTML="";
-products.forEach((p,i)=>{
-box.innerHTML+=`
-<div class="product">
-<div>
-<strong>${p.name}</strong>
-<p>${p.category}</p>
-<span class="price">${p.price} درهم</span>
-</div>
-<button onclick="addToCart(${i})">أضف للسلة +</button>
-</div>`;
-});
+function renderMenu(){
+document.getElementById("menu").innerHTML=products.map((p,i)=>
+`<div class="product"><div><strong>${p[0]}</strong><br><span class="price">${p[1]} DH</span></div><button onclick="addToCart(${i})">أضف +</button></div>`
+).join("");
 }
 
 function addToCart(i){
-const p=products[i];
-const found=cart.find(x=>x.name===p.name);
-if(found)found.qty++;
-else cart.push({...p,qty:1});
-alert("تمت إضافة المنتج للسلة");
+cart.push(products[i]);
 renderCart();
-}
-
-function renderCart(){
-const box=document.getElementById("cartItems");
-let total=0;
-if(cart.length===0){
-box.innerHTML="السلة فارغة حاليا";
-}else{
-box.innerHTML="";
-cart.forEach((p,i)=>{
-total+=p.price*p.qty;
-box.innerHTML+=`
-<div class="cart-item">
-<span>${p.name} × ${p.qty}</span>
-<span>${p.price*p.qty} درهم</span>
-<button onclick="removeItem(${i})">حذف</button>
-</div>`;
-});
-}
-document.getElementById("total").textContent=total;
 }
 
 function removeItem(i){
@@ -162,48 +188,49 @@ cart.splice(i,1);
 renderCart();
 }
 
-function sendCart(){
-if(cart.length===0){alert("السلة فارغة");return;}
-const name=document.getElementById("buyerName").value.trim();
-const tel=document.getElementById("buyerPhone").value.trim();
-const address=document.getElementById("buyerAddress").value.trim();
-const notes=document.getElementById("buyerNotes").value.trim();
-if(!name||!tel||!address){alert("عافاك عمر الاسم والهاتف والعنوان");return;}
-let total=0;
-let message="🛒 طلب جديد من SAID EXPRESS%0A";
-message+="الاسم: "+encodeURIComponent(name)+"%0A";
-message+="الهاتف: "+encodeURIComponent(tel)+"%0A";
-message+="العنوان: "+encodeURIComponent(address)+"%0A";
-message+="----------------%0A";
-cart.forEach(p=>{
-total+=p.price*p.qty;
-message+=encodeURIComponent(p.name)+" × "+p.qty+" = "+(p.price*p.qty)+" درهم%0A";
-});
-message+="----------------%0Aالمجموع: "+total+" درهم%0A";
-message+="ملاحظات: "+encodeURIComponent(notes);
-window.open("https://wa.me/"+phone+"?text="+message,"_blank");
+function renderCart(){
+document.getElementById("cart").innerHTML=cart.length?
+cart.map((p,i)=>`<div class="product"><span>${p[0]} - ${p[1]} DH</span><button onclick="removeItem(${i})">حذف</button></div>`).join("")
+:"السلة فارغة";
+let total=cart.reduce((s,p)=>s+p[1],0);
+document.getElementById("total").textContent="المجموع: "+total+" درهم";
 }
 
-function sendDelivery(e){
-e.preventDefault();
-const name=document.getElementById("dname").value.trim();
-const tel=document.getElementById("dphone").value.trim();
-const type=document.getElementById("dtype").value;
-const from=document.getElementById("dfrom").value.trim();
-const to=document.getElementById("dto").value.trim();
-const notes=document.getElementById("dnotes").value.trim();
-const message=
-"طلب توصيل جديد - SAID EXPRESS%0A"+
-"الاسم: "+encodeURIComponent(name)+"%0A"+
-"الهاتف: "+encodeURIComponent(tel)+"%0A"+
-"نوع الخدمة: "+encodeURIComponent(type)+"%0A"+
-"الانطلاق: "+encodeURIComponent(from)+"%0A"+
-"الوصول: "+encodeURIComponent(to)+"%0A"+
-"ملاحظات: "+encodeURIComponent(notes);
-window.open("https://wa.me/"+phone+"?text="+message,"_blank");
+function sendFoodOrder(){
+if(!cart.length){alert("السلة فارغة، اختار شي وجبة أولا");return;}
+let name=document.getElementById("customerName").value.trim();
+let phoneNumber=document.getElementById("customerPhone").value.trim();
+let address=document.getElementById("customerAddress").value.trim();
+let note=document.getElementById("customerNote").value.trim();
+if(!name||!phoneNumber||!address){alert("عافاك عمر الاسم والهاتف والعنوان");return;}
+let total=cart.reduce((s,p)=>s+p[1],0);
+let items=cart.map(p=>"• "+p[0]+" : "+p[1]+" DH").join("\n");
+let msg="طلب جديد من CRISPY BOWL\nالاسم: "+name+"\nالهاتف: "+phoneNumber+"\nالعنوان: "+address+"\nالطلبات:\n"+items+"\nالمجموع: "+total+" DH\nملاحظات: "+note;
+openWhatsApp(msg);
 }
 
-renderProducts();
+function sendList(type,id){
+let value=document.getElementById(id).value.trim();
+if(!value){alert("عافاك كتب الطلب ديالك");return;}
+openWhatsApp("طلب جديد - "+type+"\n"+value+"\nالاسم ورقم الهاتف والعنوان: المرجو تأكيدها مع الزبون عبر واتساب.");
+}
+
+function sendDelivery(){
+let name=document.getElementById("deliveryName").value.trim();
+let number=document.getElementById("deliveryPhone").value.trim();
+let from=document.getElementById("deliveryFrom").value.trim();
+let to=document.getElementById("deliveryTo").value.trim();
+let details=document.getElementById("deliveryDetails").value.trim();
+if(!name||!number||!from||!to){alert("عافاك عمر المعلومات الضرورية");return;}
+openWhatsApp("طلب توصيل جديد - SAID EXPRESS\nالاسم: "+name+"\nالهاتف: "+number+"\nمن: "+from+"\nإلى: "+to+"\nالتفاصيل: "+details);
+}
+
+function openWhatsApp(message){
+window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message),"_blank");
+}
+
+renderMenu();
+renderCart();
 </script>
 </body>
 </html>
